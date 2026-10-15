@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <div class="card shadow mx-auto" style="max-width: 600px">
+
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Detalle del estudiante</h3>
+    </div>
+
+    <div class="card-body" *ngIf="cargando">
+      Cargando información...
+    </div>
+
+    <div class="card-body" *ngIf="error">
+      <p class="text-danger">{{ error }}</p>
+      <a routerLink="/estudiantes" class="btn btn-secondary">
+        Volver
+      </a>
+    </div>
+
+    <div class="card-body" *ngIf="estudiante as e">
+      <h4>{{ e.nombre }}</h4>
+
+      <p><strong>Nota 1:</strong> {{ e.nota1 }}</p>
+      <p><strong>Nota 2:</strong> {{ e.nota2 }}</p>
+      <p><strong>Nota 3:</strong> {{ e.nota3 }}</p>
+
+      <hr>
+
+      <p>
+        <strong>Suma de notas:</strong>
+        {{ servicio.calcularSuma(e) }}
+      </p>
+
+      <p>
+        <strong>Promedio:</strong>
+        {{ servicio.calcularPromedio(e) | number:'1.2-2' }}
+      </p>
+
+      <p>
+        <strong>Estado académico:</strong>
+        <span
+          class="badge"
+          [ngClass]="servicio.obtenerEstado(e) === 'Aprobado'
+            ? 'bg-success' : 'bg-danger'">
+          {{ servicio.obtenerEstado(e) }}
+        </span>
+      </p>
+
+      <p>
+        <strong>Observación:</strong>
+        {{ servicio.obtenerObservacion(e) }}
+      </p>
+
+      <a routerLink="/estudiantes" class="btn btn-secondary mt-3">
+        Volver
+      </a>
+    </div>
+
+  </div>
+</div>

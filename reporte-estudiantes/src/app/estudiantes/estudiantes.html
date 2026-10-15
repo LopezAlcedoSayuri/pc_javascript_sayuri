@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Reporte de estudiantes</h2>
+
+  <p>Total de estudiantes: {{ estudiantes.length }}</p>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Nota 3</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let e of estudiantes; let i = index">
+          <td>{{ e.nombre }}</td>
+          <td>{{ e.nota1 }}</td>
+          <td>{{ e.nota2 }}</td>
+          <td>{{ e.nota3 }}</td>
+          <td>
+            <a class="btn btn-primary btn-sm" [routerLink]="['/detalle', i]">
+              Detalle
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
